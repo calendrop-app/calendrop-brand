@@ -28,5 +28,17 @@ for svg in "$root"/logo/calendrop-icon.svg "$root"/logo/calendrop-icon-{dark,mon
   done
 done
 
+# The wordmark logos at half, one, two and four times their SVG size.
+for svg in "$root"/logo/calendrop-logo-horizontal*.svg; do
+  for size in 367x100 733x200 1466x400 2932x800; do
+    render "$svg" "${size%x*}" "${size#*x}"
+  done
+done
+for svg in "$root"/logo/calendrop-logo-vertical*.svg; do
+  for size in 219x170 438x340 876x680 1752x1360; do
+    render "$svg" "${size%x*}" "${size#*x}"
+  done
+done
+
 # Lossless; keeps the files the same pixels, only smaller.
 oxipng --quiet --opt max --strip safe "$out"/*.png
